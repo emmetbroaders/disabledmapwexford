@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Disabled Parking Wexford Town</title>
+
+    <link rel="stylesheet" href="maps.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6tUbvoIc8F9QMrr90n1Gi90a7lJayr_o">
+    </script>
+    
+    <meta name="viewport" content="width=device-width">
+    
+  </head>
+  <body>
+      <div class="header">
+        <h1>Disabled Parking Map of Wexford Town</h1>
+      </div>
+      <div id="map"></div>
+        <script type="text/javascript">
+
+          function detectBrowser() {
+            var useragent = navigator.userAgent;
+            var mapdiv = document.getElementById("map");
+
+            if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1 ) {
+              mapdiv.style.width = '100%';
+              mapdiv.style.height = '100%';
+            } else {
+              mapdiv.style.width = '600px';
+              mapdiv.style.height = '800px';
+            }
+          }
+
+          var locations = [
+            ['Pettits Supervalu', 52.332271, -6.467839],
+            ['Wexford Park', 52.332278, -6.473539],
+            ['Green St', 52.333351, -6.465082],
+            ['Tesco, 52.331953', -6.461234],
+            ['Davitt Rd South', 52.335902,-6.467087],
+            ['Bride St', 52.335279,-6.460631],
+            ['South Main St', 52.335615,-6.458856],
+            ['South Main St', 52.336101,-6.459795],
+            ['Trinity St', 52.333914,-6.454935],
+            ['Trinity St', 52.334867,-6.455895],
+            ['Belvedere Rd', 52.339864,-6.473139],
+            ['John St', 52.338254,-6.464297],
+            ['Rowe St', 52.338717,-6.462799],
+            ['Rowe St', 52.338874,-6.462458],
+            ['Sinnot Place', 52.335706,-6.457846],
+            ['Paul Quay', 52.337257,-6.457767],
+            ['Selskar St', 52.341508,-6.465015],
+            ['Lower Georges St', 52.341362,-6.463797],
+            ['Arts Center', 52.339814,-6.463872],
+            ['Charlotte St', 52.340872,-6.462149],
+            ['Redmond Place', 52.343102,-6.464632],
+            ['Wexford Library', 52.339338,-6.463955],
+            ['Davitt Rd North', 52.338923,-6.471226],
+            ['Upper John St', 52.339917,-6.468338],
+            ['High St', 52.3373,-6.462125],
+            ['High St', 52.337491,-6.462209],
+            ['Anne St', 52.338763,-6.459849],
+            ['Crescent Quay', 52.33766,-6.459409],
+            ['Common Quay St', 52.339825,-6.461808],
+            ['Ferrybank', 52.344836, -6.453501]
+          ];
+
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 14,
+            maxZoom: 17,
+            minZoom: 14,
+            center: new google.maps.LatLng(52.337701, -6.462361),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          });
+
+          var infowindow = new google.maps.InfoWindow();
+
+          var marker, i;
+
+          for (i = 0; i < locations.length; i++) {  
+            marker = new google.maps.Marker({
+              position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+              map: map
+            });
+
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+              return function() {
+                infowindow.setContent(locations[i][0]);
+                infowindow.open(map, marker);
+              }
+            })(marker, i));
+          }
+        </script>
+
+    <div class="footer">
+      <h3>If I've missed any spots, please send me an email at <a href="mailto: emmetbroaders@gmail.com">emmetbroaders@gmail.com</a><br> and I'll add them in as soon as I can.</h3><br>
+      <p>©EmmetBroaders</p>
+    </div>
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+   
+  </body>
+</html>
